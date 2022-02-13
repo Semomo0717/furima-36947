@@ -26,15 +26,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type   | Options       |
-| ------------------ | ------ | -----------   |
-| name               | string | null: false   |
-| email              | string | null: false   |
-| password           | string | null: false   |
-| encrypted_password | string | null: false   |
-| real_name          | string | null: false   |
-| full_name          | string | null: false   |
-| bitrhday           | date   | null: false   | 
+| Column             | Type       | Options                         |
+| ------------------ | -----------| --------------------------------|
+| name               | string     | null: false                     |
+| email              | string     | null: false                     |
+| encrypted_password | string     | null: false                     |
+| real_name          | string     | null: false                     |
+| full_name          | string     | null: false                     |
+| bitrhday           | date       | null: false                     | 
+| itme               | reference  | null: false  foreign_key: true  |
+| order              | reference  | null: false  foreign_key: true  |
 
 
 ### Association
@@ -44,17 +45,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column          | Type   | Options                          |
-| ----------------| ------ | ---------------------------------|
-| title           | string | null: false,                     |
-| explanation     | text   | null: false,                     |
-| category_id     | text   | null: false,                     |
-| situation_id    | text   | null: false,                     |
-| method_id       | text   | null: false,                     |
-| area_id         | text   | null: false,                     |
-| timeship_id     | tinynt | null: false,                     |
-| cost            | tinynt | null: false,                     |
-| user            | text   | null: false,  foreign_key: true  |
+| Column          | Type     | Options                          |
+| ----------------| ---------| ---------------------------------|
+| title           | string   | null: false,                     |
+| explanation     | text     | null: false,                     |
+| category_id     | text     | null: false,                     |
+| situation_id    | text     | null: false,                     |
+| method_id       | text     | null: false,                     |
+| area_id         | text     | null: false,                     |
+| timeship_id     | integer  | null: false,                     |
+| cost            | integer  | null: false,                     |
+| user            | reference| null: false,  foreign_key: true  |
 
 ### Association
 
@@ -65,10 +66,10 @@ Things you may want to cover:
 
 ## orders テーブル
 
-| Column          | Type   | Options                          |
-| ----------------| ------ | ---------------------------------|
-| user            | text   | null: false,  foreign_key: true  |
-| item            | text   | null: false,  foreign_key: true  |
+| Column          | Type      | Options                          |
+| ----------------| ----------| ---------------------------------|
+| user            | reference | null: false,  foreign_key: true  |
+| shipment        | text      | null: false,  foreign_key: true  |
 
 ### Association
 
@@ -79,20 +80,18 @@ Things you may want to cover:
 
 ## shipments テーブル
 
-| Column          | Type   | Options                          |
-| ----------------| ------ | ---------------------------------|
-| post_code       | string | null: false,                     |
-| area_id         | text   | null: false,   foreign_key: true |
-| municipality    | string | null: false                      |
-| adress          | string | null: false,                     |
-| building        | string |                                  |
-| telephone_number| string | null: false,                     |
-| item            | text   | null: false,   foreign_key: true |
+| Column          | Type      | Options                          |
+| ----------------| ----------| ---------------------------------|
+| post_code       | string    | null: false,                     |
+| area            | reference | null: false,   foreign_key: true |
+| municipality    | string    | null: false                      |
+| adress          | string    | null: false,                     |
+| building        | string    |                                  |
+| telephone_number| string    | null: false,                     |
 
 
 ### Association
 
-- belongs_to :orders
-- belongs_to :item
+- belongs_to :order
 
 
