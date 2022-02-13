@@ -29,37 +29,37 @@ Things you may want to cover:
 | Column             | Type   | Options       |
 | ------------------ | ------ | -----------   |
 | name               | string | null: false   |
-| email              | string | unique: false |
+| email              | string | null: false   |
+| password           | string | null: false   |
 | encrypted_password | string | null: false   |
-| real_name          | text   | null: false   |
-| full_name          | text   | null: false   |
-| bitrhday           | text   | null: false   | 
+| real_name          | string | null: false   |
+| full_name          | string | null: false   |
+| bitrhday           | date   | null: false   | 
 
 
 ### Association
 
-- has_many :item
+- has_many :items
 - has_many :orders
 
-## item テーブル
+## items テーブル
 
 | Column          | Type   | Options                          |
 | ----------------| ------ | ---------------------------------|
-| title           | text   | null: false,                     |
+| title           | string | null: false,                     |
 | explanation     | text   | null: false,                     |
-| category        | text   | null: false,                     |
-| situation       | text   | null: false,                     |
-| shipping_method | text   | null: false,                     |
-| shipping_area   | text   | null: false,                     |
-| time_ship       | text   | null: false,                     |
-| cost            | text   | null: false,                     |
-| user_id         | text   | null: false,  foreign_key: true  |
+| category_id     | text   | null: false,                     |
+| situation_id    | text   | null: false,                     |
+| method_id       | text   | null: false,                     |
+| area_id         | text   | null: false,                     |
+| timeship_id     | tinynt | null: false,                     |
+| cost            | tinynt | null: false,                     |
+| user            | text   | null: false,  foreign_key: true  |
 
 ### Association
 
 - belongs_to :user
-- has_one :shipment
-- has_one :orders
+- has_one :order
 
 
 
@@ -67,30 +67,32 @@ Things you may want to cover:
 
 | Column          | Type   | Options                          |
 | ----------------| ------ | ---------------------------------|
-| user_id         | text   | null: false,  foreign_key: true  |
-| item_id         | text   | null: false,  foreign_key: true  |
+| user            | text   | null: false,  foreign_key: true  |
+| item            | text   | null: false,  foreign_key: true  |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one    :shipment
 
 
-## shipment テーブル
+## shipments テーブル
 
 | Column          | Type   | Options                          |
 | ----------------| ------ | ---------------------------------|
-| post_code       | text   | null: false,                     |
-| prefectures     | text   | null: false,                     |
-| municipality    | text   | null: false                      |
-| adress          | text   | null: false,                     |
-| building        | text   | null: false,                     |
-| telephone_number| text   | null: false,                     |
-| item_id         | text   | null: false,   foreign_key: true |
+| post_code       | string | null: false,                     |
+| area_id         | text   | null: false,   foreign_key: true |
+| municipality    | string | null: false                      |
+| adress          | string | null: false,                     |
+| building        | string |                                  |
+| telephone_number| string | null: false,                     |
+| item            | text   | null: false,   foreign_key: true |
 
 
 ### Association
 
+- belongs_to :orders
 - belongs_to :item
-- has_one    :orders
+
 
