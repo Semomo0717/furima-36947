@@ -29,7 +29,7 @@ Things you may want to cover:
 | Column             | Type       | Options                         |
 | ------------------ | -----------| --------------------------------|
 | name               | string     | null: false                     |
-| email              | string     | unique: true                    |
+| email              | string     | unique: true null: false        |
 | encrypted_password | string     | null: false                     |
 | first_name         | string     | null: false                     |
 | second_name        | string     | null: false                     |
@@ -69,7 +69,7 @@ Things you may want to cover:
 | Column          | Type      | Options                          |
 | ----------------| ----------| ---------------------------------|
 | user            | references| null: false,  foreign_key: true  |
-| shipment        | text      | null: false,  foreign_key: true  |
+| item            | references| null: false,  foreign_key: true  |
 
 ### Association
 
