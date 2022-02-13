@@ -29,13 +29,13 @@ Things you may want to cover:
 | Column             | Type       | Options                         |
 | ------------------ | -----------| --------------------------------|
 | name               | string     | null: false                     |
-| email              | string     | null: false                     |
+| email              | string     | unique: true                    |
 | encrypted_password | string     | null: false                     |
-| real_name          | string     | null: false                     |
-| full_name          | string     | null: false                     |
+| first_name         | string     | null: false                     |
+| second_name        | string     | null: false                     |
+| firstkana_name     | string     | null: false                     |
+| secondkana_name    | string     | null: false                     |
 | bitrhday           | date       | null: false                     | 
-| itme               | reference  | null: false  foreign_key: true  |
-| order              | reference  | null: false  foreign_key: true  |
 
 
 ### Association
@@ -45,17 +45,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column          | Type     | Options                          |
-| ----------------| ---------| ---------------------------------|
-| title           | string   | null: false,                     |
-| explanation     | text     | null: false,                     |
-| category_id     | text     | null: false,                     |
-| situation_id    | text     | null: false,                     |
-| method_id       | text     | null: false,                     |
-| area_id         | text     | null: false,                     |
-| timeship_id     | integer  | null: false,                     |
-| cost            | integer  | null: false,                     |
-| user            | reference| null: false,  foreign_key: true  |
+| Column          | Type      | Options                          |
+| ----------------| ----------| ---------------------------------|
+| title           | string    | null: false,                     |
+| explanation     | text      | null: false,                     |
+| category_id     | integer   | null: false,                     |
+| situation_id    | integer   | null: false,                     |
+| method_id       | integer   | null: false,                     |
+| area_id         | integer   | null: false,                     |
+| timeship_id     | integer   | null: false,                     |
+| cost            | integer   |  null: false,                    |
+| user            | references| null: false,  foreign_key: true  |
 
 ### Association
 
@@ -68,7 +68,7 @@ Things you may want to cover:
 
 | Column          | Type      | Options                          |
 | ----------------| ----------| ---------------------------------|
-| user            | reference | null: false,  foreign_key: true  |
+| user            | references| null: false,  foreign_key: true  |
 | shipment        | text      | null: false,  foreign_key: true  |
 
 ### Association
@@ -83,7 +83,7 @@ Things you may want to cover:
 | Column          | Type      | Options                          |
 | ----------------| ----------| ---------------------------------|
 | post_code       | string    | null: false,                     |
-| area            | reference | null: false,   foreign_key: true |
+| area_id         | integer   | null: false,                     |
 | municipality    | string    | null: false                      |
 | adress          | string    | null: false,                     |
 | building        | string    |                                  |
