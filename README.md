@@ -33,8 +33,8 @@ Things you may want to cover:
 | encrypted_password | string     | null: false                     |
 | first_name         | string     | null: false                     |
 | second_name        | string     | null: false                     |
-| firstkana_name     | string     | null: false                     |
-| secondkana_name    | string     | null: false                     |
+| first_kana_name     | string     | null: false                     |
+| second_kana_name    | string     | null: false                     |
 | bitrhday           | date       | null: false                     | 
 
 
@@ -88,6 +88,7 @@ Things you may want to cover:
 | adress          | string    | null: false,                     |
 | building        | string    |                                  |
 | telephone_number| string    | null: false,                     |
+| order           | references| null: false,  foreign_key: true  |
 
 
 ### Association
