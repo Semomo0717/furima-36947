@@ -7,7 +7,6 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
      context '内容に問題がない場合' do
         it 'すべて値が正しく入力されている時' do
-          binding.pry
           expect(@user).to be_valid
         end
       end
@@ -27,10 +26,20 @@ RSpec.describe User, type: :model do
           @user.valid?
           expect(@user.errors.full_messages).to include("Password can't be blank")
         end
-        it 'パスワードは半角英数字混合でないと登録できない' do
-          @user.password = '00000'
+        it 'パスワードは半角英字でないと登録できない' do
+          @user.password = 'test'
           @user.valid?
           expect(@user.errors.full_messages).to include("Password is invalid")
+        end
+        it 'パスワードは全角だと登録できない' do
+          @user.password = 'TEST'
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password is invalid")
+        end
+        it 'パスワードと確認用のパスワードが不一致の場合登録できない' do
+          @user.password_confirmation = '' 
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
         it 'firstnameが空だと登録できない' do
           @user.first_name = ''
