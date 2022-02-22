@@ -11,12 +11,16 @@ RSpec.describe Item, type: :model do
         end
       end
       context '内容に問題がある場合'do
+        it 'userが紐付いていない時' do
+          @item.user = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("User must exist")
+        end
         it '商品名が空では登録できない' do
           @item.title = ''
           @item.valid?
           expect(@item.errors.full_messages).to include("Title can't be blank")
         end
-
         it '商品説明が空では登録できない' do
           @item.explanation = ''
           @item.valid?
@@ -62,6 +66,11 @@ RSpec.describe Item, type: :model do
           @item.cost = '200'
           @item.valid?
           expect(@item.errors.full_messages).to include("Cost must be greater than or equal to 300")
+        end
+        it '販売価格が全角だと登録できない' do
+          @item.cost = "３００００００００００００"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Cost is not a number")
         end
       end
   end
